@@ -19,10 +19,12 @@ import {
   TrendingUp,
   BookOpenCheck,
   Check,
+  LogOut,
 } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { getCompletedQuests, getBadges, getCustomQuests } from '@/lib/progress';
 import { quests as defaultQuests } from '@/lib/quests';
 import type { Quest } from '@/lib/types/quests';
@@ -36,11 +38,21 @@ const getRank = (completedCount: number) => {
 }
 
 export default function Dashboard() {
+  const router = useRouter();
   const [completedQuests, setCompletedQuests] = useState<string[]>([]);
   const [allQuests, setAllQuests] = useState<Quest[]>(defaultQuests);
   const [badgesEarned, setBadgesEarned] = useState(0);
+  const [user, setUser] = useState<any>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
+    // Check authentication status
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      setUser(JSON.parse(userData));
+      setIsLoggedIn(true);
+    }
+
     const updateProgress = () => {
       if (typeof window !== 'undefined') {
         const completed = getCompletedQuests();
@@ -67,6 +79,41 @@ export default function Dashboard() {
       window.removeEventListener('progressUpdated', updateProgress);
     };
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
+    setUser(null);
+    setIsLoggedIn(false);
+    router.push('/login');
+  };
+
+  // Show login prompt if not authenticated
+  if (!isLoggedIn) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center p-4">
+        <Card className="w-full max-w-md border-0 shadow-2xl">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl">Welcome to SQLArcade</CardTitle>
+            <CardDescription>Master SQL through gamified challenges</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-center text-muted-foreground">
+              Sign in to your account to start solving SQL quests and tracking your progress.
+            </p>
+            <div className="flex flex-col gap-3">
+              <Button asChild className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+                <Link href="/login">Sign In</Link>
+              </Button>
+              <Button asChild variant="outline" className="w-full">
+                <Link href="/signup">Create Account</Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   const calculateProgress = (category: string) => {
     const categoryQuests = allQuests.filter(q => q.category === category);
@@ -124,6 +171,27 @@ export default function Dashboard() {
   return (
     <MainLayout>
       <div className="space-y-6">
+        {/* User Header with Logout */}
+        <div className="flex justify-between items-start">
+          <div>
+            <h2 className="text-sm text-muted-foreground">
+              Welcome back, <span className="font-semibold text-foreground">{user?.name}</span>
+            </h2>
+            <p className="text-xs text-muted-foreground mt-1">
+              {user?.role === 'teacher' ? 'You are logged in as a Teacher' : 'Logged in as Student'}
+            </p>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleLogout}
+            className="text-red-600 hover:text-red-700 hover:bg-red-50"
+          >
+            <LogOut className="w-4 h-4 mr-2" />
+            Logout
+          </Button>
+        </div>
+
         <Card className="bg-gradient-to-br from-primary/80 to-primary text-primary-foreground">
           <CardHeader>
             <CardTitle>Welcome back, {getRank(completedQuests.length)}!</CardTitle>

@@ -117,8 +117,32 @@ export default function QuestPage() {
       });
 
       if (response.isCorrect && !isCompleted) {
+        // Update localStorage
         completeQuest(quest.id);
         setIsCompleted(true);
+        
+        // Update MongoDB with performance data
+        try {
+          const timeTaken = performance?.now?.() || 0;
+          const performanceResponse = await fetch('/api/student/performance', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              questId: quest.id,
+              questTitle: quest.title,
+              difficulty: quest.difficulty,
+              timeTaken: timeTaken,
+            }),
+          });
+
+          if (!performanceResponse.ok) {
+            console.error('Failed to update performance in MongoDB');
+          }
+        } catch (error) {
+          console.error('Error updating performance:', error);
+        }
       }
     } catch (error: any) {
       console.error('Query execution error:', error);

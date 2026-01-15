@@ -316,9 +316,10 @@ export default function ExplorePage() {
                         </CardContent>
                     </Card>
                 ))}
-             </div>
+            </div>
           </div>
         )}
       </div>
     </MainLayout>
   );
+}
