@@ -210,7 +210,7 @@ export default function QuestClient({ questId }: QuestClientProps) {
           </div>
 
           <div className="lg:col-span-2 space-y-6">
-             {/* Simplified Schema Cards */}
+             {/* Simplified Schema Cards
              {['DEPARTMENT', 'EMPLOYEES', 'PROJECT', 'WORKS_ON'].map(table => (
                <Card key={table}>
                  <CardHeader className="py-3"><CardTitle className="text-sm">Table: {table}</CardTitle></CardHeader>
@@ -218,7 +218,159 @@ export default function QuestClient({ questId }: QuestClientProps) {
                    <p className="text-xs text-muted-foreground">Check the documentation for column details.</p>
                  </CardContent>
                </Card>
-             ))}
+             ))} */}
+
+
+              {/* Right Column: Database Schema Tables */}
+          <div className="lg:col-span-2 space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Database Schema</CardTitle>
+                <CardDescription>DEPARTMENT</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Column</TableHead>
+                      <TableHead>Type</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className="font-medium">Dnumber</TableCell>
+                      <TableCell>INT</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Dname</TableCell>
+                      <TableCell>VARCHAR(50)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Mgr_ssn</TableCell>
+                      <TableCell>CHAR(9)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Mgr_start_date</TableCell>
+                      <TableCell>DATE</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Database Schema</CardTitle>
+                <CardDescription>EMPLOYEES</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Column</TableHead>
+                      <TableHead>Type</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className="font-medium">Fname</TableCell>
+                      <TableCell>VARCHAR(20)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Lname</TableCell>
+                      <TableCell>VARCHAR(20)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Ssn</TableCell>
+                      <TableCell>CHAR(9)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Sex</TableCell>
+                      <TableCell>CHAR(1)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Salary</TableCell>
+                      <TableCell>INT</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Super_ssn</TableCell>
+                      <TableCell>CHAR(9)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Dno</TableCell>
+                      <TableCell>INT</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Database Schema</CardTitle>
+                <CardDescription>PROJECT</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Column</TableHead>
+                      <TableHead>Type</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className="font-medium">Pnumber</TableCell>
+                      <TableCell>INT</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Pname</TableCell>
+                      <TableCell>VARCHAR(50)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Plocation</TableCell>
+                      <TableCell>VARCHAR(50)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Dnum</TableCell>
+                      <TableCell>INT</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle>Database Schema</CardTitle>
+                <CardDescription>WORKS_ON</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Column</TableHead>
+                      <TableHead>Type</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell className="font-medium">Essn</TableCell>
+                      <TableCell>CHAR(9)</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Pno</TableCell>
+                      <TableCell>INT</TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell className="font-medium">Hours</TableCell>
+                      <TableCell>DECIMAL(4,1)</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </div>
           </div>
         </div>
       )}
