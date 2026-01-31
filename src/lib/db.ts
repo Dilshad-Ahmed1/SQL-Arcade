@@ -2,7 +2,7 @@ import mysql from 'mysql2/promise';
 import fs from 'fs';
 import path from 'path';
 
-const caPath = path.resolve(process.cwd(), process.env.SSL_PATH || '');
+//const caPath =(process.env.SSL_CA || '');
 
 export const pool = mysql.createPool({
   host: process.env.MYSQL_HOST || 'localhost',
@@ -14,7 +14,7 @@ export const pool = mysql.createPool({
   queueLimit: 0,
   multipleStatements: true,
   ssl: {
-    ca: fs.readFileSync(caPath)
+    ca: process.env.SSL_CA
   },
   connectTimeout: 60000
 });
