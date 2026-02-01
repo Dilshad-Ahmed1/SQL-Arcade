@@ -49,10 +49,33 @@ export default function DashboardClient() {
   // Prevent hydration error by waiting for mount
   useEffect(() => {
     setMounted(true);
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      setUser(JSON.parse(userData));
+    const token = localStorage.getItem('authToken');
+    const localUser = localStorage.getItem('user');
+
+    if (token && localUser) {
+      // 1. Set initial state from local storage (for instant UI)
+      setUser(JSON.parse(localUser));
       setIsLoggedIn(true);
+
+      // 2. Fetch the "Truth" from MongoDB
+      fetch('/api/student/profile', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.student) {
+          // Map the complex object array to a simple ID list for your state
+          const completedIds = data.student.completedQuests.map((q: any) => q.questId);
+          
+          setCompletedQuests(completedIds);
+          // Calculate badges based on total solved count
+          setBadgesEarned(Math.floor(data.student.performance.totalQuestsSolved / 5));
+          
+          // Update user details if they changed
+          setUser((prev: any) => ({ ...prev, name: data.student.name }));
+        }
+      })
+      .catch(err => console.error("Sync failed", err));
     }
 
     const updateProgress = () => {
