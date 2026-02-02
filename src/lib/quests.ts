@@ -61,7 +61,7 @@ export const quests: Quest[] = [
   },
   {
     id: 'insert-knight',
-    title: 'INSERT Knight',
+    title: 'INSERT INTO',
     description: 'Master adding new rows of data.',
     longDescription: 'A new knight, Sir Galahad, has joined the Round Table! His salary is 55,000, SSN is 777777777, he reports to Sir Lancelot (222222222), and works in department 1. Your task is to insert a new record for him into the `EMPLOYEES` table.',
     difficulty: 'Beginner',
@@ -87,7 +87,7 @@ export const quests: Quest[] = [
   // --- SECTION 2: INTERMEDIATE CONCEPTS ---
   {
     id: 'logical-knights',
-    title: 'Logic of the Knights',
+    title: 'Combining Conditions',
     description: 'Use AND to combine multiple conditions.',
     longDescription: "The King needs a specific knight for a dangerous mission. Find all employees in department 1 (Royal Guard) who earn less than 65,000 gold pieces.",
     difficulty: 'Intermediate',
@@ -111,7 +111,7 @@ export const quests: Quest[] = [
   },
    {
     id: 'update-wizard',
-    title: 'UPDATE Wizard',
+    title: 'Updating Existing Data',
     description: 'Become a wizard of data modification.',
     longDescription: "Merlin's exceptional service has earned him a raise! Update his salary in the `EMPLOYEES` table to 85,000.",
     difficulty: 'Intermediate',
@@ -132,7 +132,7 @@ export const quests: Quest[] = [
   },
   {
     id: 'order-treasure',
-    title: 'The Wealthiest',
+    title: 'Ordering Results',
     description: 'Sort results using ORDER BY.',
     longDescription: "The King wants to see his payroll in order. Select all employees and order them by their `Salary` in descending order (highest salary first).",
     difficulty: 'Intermediate',
@@ -159,7 +159,7 @@ export const quests: Quest[] = [
   },
   {
     id: 'count-staff',
-    title: 'The Royal Headcount',
+    title: 'Counting Rows',
     description: 'Use COUNT to aggregate data.',
     longDescription: "The King has lost track of how many people work in the castle. Use the COUNT function to return the total number of rows in the `EMPLOYEES` table.",
     difficulty: 'Intermediate',
@@ -216,7 +216,7 @@ export const quests: Quest[] = [
   },
   {
     id: 'group-by-roles',
-    title: 'Department Salary Analysis',
+    title: 'Aggregating with GROUP BY',
     description: 'Group data and calculate averages.',
     longDescription: "The King wants to know the average salary for each department in the kingdom. Use GROUP BY to group the employees by `Dno` and calculate the average `Salary` for each group.",
     difficulty: 'Advanced',
@@ -265,7 +265,7 @@ export const quests: Quest[] = [
   },
   {
     id: 'triple-join-projects',
-    title: 'Project Personnel Analysis',
+    title: 'Working With Multiple Tables',
     description: 'Join three tables to analyze project contributions.',
     longDescription: "The board needs a report on project locations. Retrieve the Employee's Last Name, the Project Name they are working on, and their total Hours, but only for projects located in 'Houston'.",
     difficulty: 'Advanced',
@@ -285,7 +285,7 @@ export const quests: Quest[] = [
   },
   {
     id: 'self-join-managers',
-    title: 'The Supervisor Search',
+    title: 'Self Joins and Hierarchies',
     description: 'Use a self-join to identify managers.',
     longDescription: "Every knight needs a leader. Retrieve the First Name of every employee along with the First Name of their direct supervisor. Use a self-join on the EMPLOYEES table.",
     difficulty: 'Advanced',
@@ -304,7 +304,7 @@ export const quests: Quest[] = [
   },
   {
     id: 'nested-department-avg',
-    title: 'Departmental Elite',
+    title: 'Advanced Subquery Filtering',
     description: 'Complex subquery with departmental grouping.',
     longDescription: "Find the names of employees who earn more than the average salary of the 'Research' department (Dnumber 5).",
     difficulty: 'Advanced',
