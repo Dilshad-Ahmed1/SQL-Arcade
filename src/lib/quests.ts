@@ -318,7 +318,7 @@ export const quests: Quest[] = [
       { Fname: 'Lady', Lname: 'Guinevere' },
       { Fname: 'Merlin', Lname: 'Ambrosius' }
     ]
-  }
+  },
   {
     id:'not-null',
     title: 'The NOT NULL Constraint',
