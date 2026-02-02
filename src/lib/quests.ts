@@ -320,24 +320,6 @@ export const quests: Quest[] = [
     ]
   },
   {
-    id:'not-null',
-    title: 'The NOT NULL Constraint',
-    description: 'Enforce a not null constraint on a non-primary key attribute.',
-    longDescription: "The King wants to ensure that all employees have a supervisor assigned. Retrieve the first and last names of employees who have a supervisor (i.e., where `Super_ssn` is not NULL).",
-    difficulty: 'Beginner',
-    category: 'Constraints',
-    initialQuery: "SELECT Fname, Lname FROM EMPLOYEES\nWHERE Super_ssn IS NOT NULL;",
-    correctQuery: "SELECT Fname, Lname FROM EMPLOYEES WHERE Super_ssn IS NOT NULL",
-    successMessage: "Great job! You've successfully enforced the NOT NULL constraint.", 
-    schema: [{ tableName: 'EMPLOYEES', columns: [{ name: 'Fname', type: 'VARCHAR(20)' }, { name: 'Lname', type: 'VARCHAR(20)' }, { name: 'Super_ssn', type: 'CHAR(9)' }] }],
-    resultData: [
-      { Fname: 'Sir', Lname: 'Galahad' },
-      { Fname: 'Lady', Lname: 'Guinevere' },
-      { Fname: 'Merlin', Lname: 'Ambrosius' },
-      { Fname: 'Franklin', Lname: 'Harrington' }
-    ]
-  },
-  {
     id:'unique-constraint',
     title: 'The UNIQUE Constraint',
     description: 'Enforce a unique constraint on an attribute.',
@@ -352,24 +334,6 @@ export const quests: Quest[] = [
       { Dname: 'Royal Guard' },
       { Dname: 'Arcane Council' },
       { Dname: 'Research' }
-    ]
-  },
-  {
-    id:'check-constraint',
-    title: 'The CHECK Constraint',
-    description: 'Enforce a check constraint on an attribute.', 
-    longDescription: "The King wants to ensure that all employees have a salary greater than 30,000 gold pieces. Retrieve the first and last names of employees who meet this salary requirement.",
-    difficulty: 'Beginner',
-    category: 'Constraints',
-    initialQuery: "SELECT Fname, Lname FROM EMPLOYEES\nWHERE Salary > 30000;",
-    correctQuery: "SELECT Fname, Lname FROM EMPLOYEES WHERE Salary > 30000",
-    successMessage: "Excellent! You've successfully enforced the CHECK constraint.",
-    schema: [{ tableName: 'EMPLOYEES', columns: [{ name: 'Fname', type: 'VARCHAR(20)' }, { name: 'Lname', type: 'VARCHAR(20)' }, { name: 'Salary', type: 'INT' }] }],
-    resultData: [
-      { Fname: 'King', Lname: 'Arthur' },
-      { Fname: 'Sir', Lname: 'Lancelot' },
-      { Fname: 'Sir', Lname: 'Gawain' },
-      { Fname: 'Lady', Lname: 'Guinevere' },
     ]
   },
   {
