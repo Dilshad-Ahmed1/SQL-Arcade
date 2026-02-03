@@ -166,7 +166,7 @@ interface QuestClientProps {
 }
 
 export default function QuestClient({ questId }: QuestClientProps) {
-  // ✅ split quest + template from URL
+  // split quest + template from URL
   const [baseQuestId, templateKey = 'medieval_kingdom'] = questId.split('__');
 
   const { toast } = useToast();
@@ -179,7 +179,6 @@ export default function QuestClient({ questId }: QuestClientProps) {
   const [queryResult, setQueryResult] = useState<any[] | null>(null);
   const [isCompleted, setIsCompleted] = useState(false);
 
-  // Make sure to add this ref at the top of your component (outside the useEffect)
 const hasFetched = useRef(false);
 
 useEffect(() => {
